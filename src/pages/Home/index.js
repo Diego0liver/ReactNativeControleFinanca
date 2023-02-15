@@ -1,36 +1,44 @@
-
+import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet, Text, View, Image } from 'react-native';
+
 
 
 export default function Home() {
   return (
-    <View style={styles.container}>
+    <LinearGradient
+        colors={['#2A4759', '#fff']}
+        style={styles.container}>
       <Text style={styles.titulo}>Controle financeiro</Text>
       <View style={styles.quadrado}>
       <Text style={styles.texto}>Total:</Text>
-      <Text style={styles.preco}>R$ 200,20</Text>
+      <Text style={styles.preco}>R$ 222,20</Text>
+      <Image source={require('../../img/money.png')}
+       style={{ width: 35, height: 35 }}></Image>
       </View>
       <View style={styles.quadrado}>
       <Text style={styles.texto}>Entrada:</Text>
       <Text style={styles.preco}>R$ 200,20</Text>
+      <Image source={require('../../img/enter.png')}
+       style={{ width: 35, height: 35 }}></Image>
       </View>
       <View style={styles.quadrado}>
       <Text style={styles.texto}>Saida:</Text>
       <Text style={styles.preco}>R$ 200,20</Text>
+      <Image source={require('../../img/saida.png')}
+       style={{ width: 35, height: 35 }}></Image>
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
-        justifyContent: 'center',
+    justifyContent: 'center',
   },
   quadrado:{
-    height: 190,
+    height: 150,
     width: '98%',
     backgroundColor: '#B4CED9',
     marginTop: 10,
@@ -42,7 +50,9 @@ const styles = StyleSheet.create({
   titulo:{
   fontSize:20,
   marginTop: 50,
-  textAlign: 'center'
+  textAlign: 'center',
+  color: '#fff',
+  fontWeight: 'bold'
   },
   preco:{
   fontSize: 50,

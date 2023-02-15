@@ -1,9 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
+import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
 export default function Add() {
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={['#fff', 'tomato']}
+    style={styles.container}>
       <Text style={styles.titulo}>Adiciona uma entrada ou saida</Text>
       <Text style={styles.texto}>Titulo</Text>
       <TextInput  style={styles.input}></TextInput>
@@ -13,15 +14,14 @@ export default function Add() {
       <Button style={styles.btn} color='#2A4759' title='Entrada'></Button>
       <Button title='Saida' color='#ff6347' ></Button>
       </View>
-      <StatusBar style="auto" />
-    </View>
+     
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },input: {
