@@ -1,17 +1,41 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, RefreshControl } from 'react-native';
+import React,{useState} from 'react';
+import api from '../../api/api'
 
 export default function Add() {
+    const [text, setText] = useState('');
+    const [preco, setPreco] = useState('');
+
+  const handleInputChange = (value) => {
+    setText(value);
+  };
+ const handleInputChangePreco = (value) => {
+  setPreco(value);
+  };
+  function cria(){
+    if(text && preco){
+     api.post('entrada', {
+      titulo: text,
+      preco: preco
+    }).then(alert('OK')||window.location.reload(true))
+   
+}else{alert("Preencha todos os campos")}
+}
+
+
+
+
   return (
     <LinearGradient colors={['#fff', 'tomato']}
     style={styles.container}>
       <Text style={styles.titulo}>Adiciona uma entrada ou saida</Text>
       <Text style={styles.texto}>Titulo</Text>
-      <TextInput  style={styles.input}></TextInput>
+      <TextInput value={text} onChangeText={handleInputChange} style={styles.input}></TextInput>
       <Text style={styles.texto}>Valor</Text>
-      <TextInput  keyboardType="numeric"  style={styles.input}></TextInput>
+      <TextInput value={preco} onChangeText={handleInputChangePreco} keyboardType="numeric"  style={styles.input}></TextInput>
       <View style={styles.buttons}>
-      <Button style={styles.btn} color='#2A4759' title='Entrada'></Button>
+      <Button onPress={cria} style={styles.btn} color='#2A4759' title='Entrada'></Button>
       <Button title='Saida' color='#ff6347' ></Button>
       </View>
      
