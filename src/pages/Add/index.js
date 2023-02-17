@@ -13,7 +13,8 @@ export default function Add() {
  const handleInputChangePreco = (value) => {
   setPreco(value);
   };
-  function cria(){
+
+  function entrada(){
     if(text && preco){
      api.post('entrada', {
       titulo: text,
@@ -23,20 +24,30 @@ export default function Add() {
 }else{alert("Preencha todos os campos")}
 }
 
+function saida(){
+  if(text && preco){
+   api.post('saida', {
+    titulo: text,
+    preco: preco
+  }).then(alert('OK')||window.location.reload(true))
+ 
+}else{alert("Preencha todos os campos")}
+}
+
 
 
 
   return (
     <LinearGradient colors={['#fff', 'tomato']}
     style={styles.container}>
-      <Text style={styles.titulo}>Adiciona uma entrada ou saida</Text>
+      <Text style={styles.titulo}>Adiciona entrada ou saida</Text>
       <Text style={styles.texto}>Titulo</Text>
       <TextInput value={text} onChangeText={handleInputChange} style={styles.input}></TextInput>
       <Text style={styles.texto}>Valor</Text>
       <TextInput value={preco} onChangeText={handleInputChangePreco} keyboardType="numeric"  style={styles.input}></TextInput>
       <View style={styles.buttons}>
-      <Button onPress={cria} style={styles.btn} color='#2A4759' title='Entrada'></Button>
-      <Button title='Saida' color='#ff6347' ></Button>
+      <Button onPress={entrada} style={styles.btn} color='#2A4759' title='Entrada'></Button>
+      <Button onPress={saida} title='Saida' color='#ff6347' ></Button>
       </View>
      
     </LinearGradient>
