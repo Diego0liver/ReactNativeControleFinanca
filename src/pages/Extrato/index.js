@@ -1,19 +1,12 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet, Text, View } from 'react-native';
-import React,{useState, useEffect} from 'react';
-import api from '../../api/api'
+import React,{useContext} from 'react';
+import { TotalContext } from '../../context/index'
+
 
 export default function Extrato() {
-  const [entrada, setEntrada] = useState([])
-  const [saida, setSaida] = useState([])
-  useEffect(()=>{
-    api.get('saida').then((data)=>{
-      setSaida(data.data)
-      api.get('entrada').then((data)=>{
-        setEntrada(data.data)
-       })
-     })
-  },[])
+  const { saida, entrada, soma, totalSaida, total } = useContext(TotalContext) 
+ 
   
   return (
     <LinearGradient
@@ -33,7 +26,11 @@ export default function Extrato() {
        <Text style={styles.textCont} >R$ {item.preco}</Text>
        </View>
     ))}
-     
+     <View>
+      <Text style={styles.txt}>Total: 
+      {`${Number(totalSaida) > Number(total) ? " -" : ""}${soma}`}
+      </Text>
+     </View>
     </LinearGradient>
   );
 }

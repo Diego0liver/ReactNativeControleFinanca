@@ -1,26 +1,12 @@
-import React,{useState, useEffect} from 'react';
+import React,{useContext} from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import api from '../../api/api'
-
+import { TotalContext } from '../../context/index'
 
 
 
 export default function Entrada() {
-
-  const [entrada, setEntrada] = useState([])
-
-useEffect(()=>{
-  api.get('entrada').then((data)=>{
-    setEntrada(data.data)
-   })
-},[])
-
-const seletEntrada = async (id_1)=> {
-  await api.delete(`entrada/${id_1}`)
-  alert('Registro apagado')||window.location.reload(true)
-}
-
+  const { entrada, seletEntrada  } = useContext(TotalContext)  
 
   return (
     <LinearGradient

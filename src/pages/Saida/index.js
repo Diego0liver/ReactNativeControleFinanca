@@ -1,21 +1,10 @@
-import React,{useState, useEffect} from 'react';
+import React,{useContext} from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import api from '../../api/api'
+import { TotalContext } from '../../context/index'
 
 export default function Saida() {
-
-const [saida, setSaida] = useState([])
-useEffect(()=>{
-  api.get('saida').then((data)=>{
-    setSaida(data.data)
-   })
-},[])
-
-const seletSaida = async (id_2)=> {
-  await api.delete(`saida/${id_2}`)
-  alert('Registro apagado')||window.location.reload(true)
-}
+  const { saida, seletSaida  } = useContext(TotalContext) 
 
 
   return (
